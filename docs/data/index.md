@@ -78,13 +78,14 @@ train_image_paths = [os.path.join(TRAIN_FOLDER, image_name)
 train_image_paths[:5]
 ```
 
-```js
+
     ['./Challenge 1_ Handwriting OCR for Vietnamese Address/0916_Data Samples 2/0768_samples.png',
      './Challenge 1_ Handwriting OCR for Vietnamese Address/0916_Data Samples 2/0238_samples.png',
      './Challenge 1_ Handwriting OCR for Vietnamese Address/0916_Data Samples 2/0898_samples.png',
      './Challenge 1_ Handwriting OCR for Vietnamese Address/0916_Data Samples 2/0907_samples.png',
      './Challenge 1_ Handwriting OCR for Vietnamese Address/0916_Data Samples 2/0071_samples.png']
-```
+
+
 
 ```python
 print('Number of training images:', len(train_image_paths))
