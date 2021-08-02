@@ -38,7 +38,7 @@ Khi tiếp cận với một bài toán học máy, chúng ta cần phải xem x
 ### 4. Triển khai mô hình
 Sau khi huấn luyện mô hình, chúng ta cần triển khai mô hình này vào thực tế. Có nhiều yêu cầu cũng như môi trường khác nhau mà chúng ta cần phải triển khai tuỳ thuộc vào bài toán như: triển khai trên mobile thông qua các ứng dụng, triển khai mô hình trên nền tảng đám mây và cung cấp API cho người dùng, triển khai trên các máy của khách hàng bằng cách gửi các docker image, hoặc chúng ta cũng có thể triển khai thông qua các extensions, SDK,...
 
-## Hệ thống ví dụ
+## Công cụ phát triển
 Ở trong hình quy trình của một hệ thống học máy ở đầu trang, chúng ta có thể lựa chọn các thành phần phù hợp cho từng bước trong quy trình. Trong blog này, chúng ta sẽ sử dụng các thư viện mã nguồn mở có sẵn và được sử dụng nhiều trong thực tế.
 1. Lưu trữ dữ liệu: Amazon Simple Storage Service (S3)
 2. Gán nhãn dữ liệu: Label Studio
