@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## Machine Learning Engineering Tutorial
+Hướng dẫn xây dựng hệ thống trí tuệ nhân tạo/học máy dành cho các kĩ sư học máy.
 
-You can use the [editor on GitHub](https://github.com/thanhhau097/mlpipeline/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### 1. Giới thiệu
+Trong blog này, chúng ta sẽ cùng nhau xây dựng một phần mềm ứng dụng các mô hình học máy trong thực tế, bằng cách sử dụng các công cụ mã nguồn mở. Đây là blog hướng dẫn chi tiết dành cho các bạn muốn theo con đường làm một kĩ học máy (Machine Learning Engineer), cũng như các kĩ sư phần mềm muốn ứng dụng các mô hình học máy vào sản phẩm của mình. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### 2. Mục lục
+1. [Tổng quan về một hệ thống học máy (Machine Learning System)](./overview/index.md)
+2. [Lưu trữ và gán nhãn dữ liệu](./data/index.md)
+3. [Huấn luyện mô hình học máy](./training/index.md)
+4. [Triển khai và áp dụng mô hình học máy](./deployment/index.md)
+5. [Xây dựng hệ thống huấn luyện mô hình bằng Kubeflow](./kubeflow/index.md)
+6. [Triển khai mô hình bằng Nuclio](./nuclio/index.md)
+7. [Xây dựng cơ sở hạ tầng cho mô hình học máy bằng Terraform](./terraform/index.md)
+8. [Kết nối các thành phần của hệ thống học máy](./pipeline/index.md)
 
-### Markdown
+### 3. Công cụ
+Trong blog này, chúng ta sẽ sử dụng các công nghệ và các công cụ được áp dụng trong các dự án học máy thực tế, vì vậy người đọc cần có kiến thức cơ bản về phát triển phần mềm và các công cụ phát triển phần mềm.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Trong blog, chúng ta sẽ sử dụng các công cụ và thư viện sau:
+1. Cơ bản: Python, Git, Pytorch, AWS, DVC, Docker, Kubernetes
+2. Các thư viện mã nguồn mở có sẵn: Label Studio, Cometml, Kubeflow, Nuclio.
 
-```markdown
-Syntax highlighted code block
+Trong blog này, chúng ta sẽ cùng nhau sử dụng các công cụ được liệt kê ở trên để xây dựng một hệ thống machine learning hoàn chỉnh.
 
-# Header 1
-## Header 2
-### Header 3
+### 4. Đóng góp và ý kiến
+Nếu có bất kì ý kiến đóng góp và sửa đổi nào, bạn vui lòng tạo *issues* và *pull requests*. Cảm ơn các bạn đã quan tâm!
 
-- Bulleted
-- List
+### Về tác giả
+**Tác giả:** Nguyễn Thành Hậu
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/thanhhau097/mlpipeline/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+**Email:** thanhhau097@gmail.com
