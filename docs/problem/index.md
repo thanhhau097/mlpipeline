@@ -2,6 +2,7 @@
 Trong blog này, chúng ta sẽ xây dựng một hệ thống học máy cho bài toán đọc hình ảnh chữ viết tay.
 
 ## Phân tích bài toán
+![alt text](./images/service.png "Bài toán")
 - **Bài toán**: Chuyển đổi hình ảnh chữ viết thành dạng văn bản, ứng dụng trên điện thoại di động, máy tính bảng để người dùng có thể viết thay vì gõ phím.
 
 - **Dữ liệu**: 
