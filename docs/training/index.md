@@ -786,7 +786,7 @@ Sau khi đăng kí tài khoản, chúng ta đăng nhập và tạo dự án mớ
 ```python
 # Create an experiment with your api key
 experiment = Experiment(
-    api_key="73D2HIvmnZARKIEVq7QsQSt8b",
+    api_key="*******************",
     project_name="ocr",
     workspace="thanhhau097",
 )
@@ -863,7 +863,7 @@ config = {
 }
 
 
-opt = Optimizer(config, api_key='73D2HIvmnZARKIEVq7QsQSt8b')
+opt = Optimizer(config, api_key='*******************')
 ```
 
 
