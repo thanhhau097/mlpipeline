@@ -727,27 +727,6 @@ Chúng ta có thể thấy rằng, mô hình học máy có hội tụ và độ
 ### Thử nghiệm dự đoán của mô hình
 Sau khi huấn luyện mô hình, chúng ta sẽ thử nghiệm dự đoán độ chính xác của mô hình trên một số hình ảnh mẫu.
 
-
-```python
-def predict(image):
-    model.eval()
-    batch = [{'image': image, 'label': [1]}]
-    images = collate_wrapper(batch)[0]
-
-    images = images.to(device)
-
-    outputs = model(images)
-    outputs = outputs.permute(1, 0, 2)
-    output = outputs[0]
-
-    out_best = list(torch.argmax(output, -1))  # [2:]
-    out_best = [k for k, g in itertools.groupby(out_best)]
-    pred_text = get_label_from_indices(out_best)
-
-    return pred_text
-```
-
-
 ```python
 from matplotlib import pyplot as plt
 ```
