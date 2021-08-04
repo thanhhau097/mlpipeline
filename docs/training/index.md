@@ -727,17 +727,6 @@ Chúng ta có thể thấy rằng, mô hình học máy có hội tụ và độ
 ### Thử nghiệm dự đoán của mô hình
 Sau khi huấn luyện mô hình, chúng ta sẽ thử nghiệm dự đoán độ chính xác của mô hình trên một số hình ảnh mẫu.
 
-```python
-from matplotlib import pyplot as plt
-```
-
-
-```python
-image = cv2.imread('./data/test/images/0000_tests.png')
-plt.imshow(image)
-predict(image)
-```
-
 
 ```python
 def predict(image):
