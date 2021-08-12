@@ -119,7 +119,7 @@ def predict(image):
     # upload image to aws s3
     filename = str(uuid.uuid4()) + '.png'
     cv2.imwrite(filename, image)
-    upload_file_to_s3(filename, bucket='ocrpipeline', 'data/user_data/')
+    upload_file_to_s3(filename, bucket='ocrpipeline', 'data/user_data/images')
 
     model.eval()
     batch = [{'image': image, 'label': [1]}]

@@ -1,0 +1,15 @@
+name: OCR Preprocessing
+description: Preprocess OCR model
+
+outputs:
+  - {name: output_path, type: String, description: 'Output Path'}
+
+implementation:
+  container:
+    image: thanhhau097/ocrpreprocess
+    command: [
+      python, /src/main.py,
+    ]
+
+    fileOutputs:
+      output_path: /output_path.txt # path to s3

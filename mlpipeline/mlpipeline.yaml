@@ -1,0 +1,119 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: mlpipeline-
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.7.0, pipelines.kubeflow.org/pipeline_compilation_time: '2021-08-10T17:28:44.145301',
+    pipelines.kubeflow.org/pipeline_spec: '{"name": "Mlpipeline"}'}
+  labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.7.0}
+spec:
+  entrypoint: mlpipeline
+  templates:
+  - name: kubeflow-serve-model-using-kfserving
+    container:
+      args:
+      - -u
+      - kfservingdeployer.py
+      - --action
+      - apply
+      - --model-name
+      - custom-simple
+      - --model-uri
+      - ''
+      - --canary-traffic-percent
+      - '100'
+      - --namespace
+      - kubeflow-user
+      - --framework
+      - ''
+      - --custom-model-spec
+      - '{"image": "thanhhau097/ocrdeployment:v1.0", "port": 5000, "name": "custom-container",
+        "command": ["python3", "/src/main.py", "--model_s3_path", "s3://ocrpipeline/best_model.pth"],
+        "image_pull_policy": "Always"}'
+      - --autoscaling-target
+      - '0'
+      - --service-account
+      - ''
+      - --enable-istio-sidecar
+      - "True"
+      - --output-path
+      - /tmp/outputs/InferenceService_Status/data
+      - --inferenceservice-yaml
+      - '{}'
+      - --watch-timeout
+      - '1800'
+      - --min-replicas
+      - '-1'
+      - --max-replicas
+      - '-1'
+      - --request-timeout
+      - '60'
+      command: [python]
+      image: quay.io/aipipeline/kfserving-component:v0.5.1
+    outputs:
+      artifacts:
+      - {name: kubeflow-serve-model-using-kfserving-InferenceService-Status, path: /tmp/outputs/InferenceService_Status/data}
+    metadata:
+      labels:
+        pipelines.kubeflow.org/kfp_sdk_version: 1.7.0
+        pipelines.kubeflow.org/pipeline-sdk-type: kfp
+        pipelines.kubeflow.org/enable_caching: "true"
+      annotations: {pipelines.kubeflow.org/component_spec: '{"description": "Serve
+          Models using Kubeflow KFServing", "implementation": {"container": {"args":
+          ["-u", "kfservingdeployer.py", "--action", {"inputValue": "Action"}, "--model-name",
+          {"inputValue": "Model Name"}, "--model-uri", {"inputValue": "Model URI"},
+          "--canary-traffic-percent", {"inputValue": "Canary Traffic Percent"}, "--namespace",
+          {"inputValue": "Namespace"}, "--framework", {"inputValue": "Framework"},
+          "--custom-model-spec", {"inputValue": "Custom Model Spec"}, "--autoscaling-target",
+          {"inputValue": "Autoscaling Target"}, "--service-account", {"inputValue":
+          "Service Account"}, "--enable-istio-sidecar", {"inputValue": "Enable Istio
+          Sidecar"}, "--output-path", {"outputPath": "InferenceService Status"}, "--inferenceservice-yaml",
+          {"inputValue": "InferenceService YAML"}, "--watch-timeout", {"inputValue":
+          "Watch Timeout"}, "--min-replicas", {"inputValue": "Min Replicas"}, "--max-replicas",
+          {"inputValue": "Max Replicas"}, "--request-timeout", {"inputValue": "Request
+          Timeout"}], "command": ["python"], "image": "quay.io/aipipeline/kfserving-component:v0.5.1"}},
+          "inputs": [{"default": "create", "description": "Action to execute on KFServing",
+          "name": "Action", "type": "String"}, {"default": "", "description": "Name
+          to give to the deployed model", "name": "Model Name", "type": "String"},
+          {"default": "", "description": "Path of the S3 or GCS compatible directory
+          containing the model.", "name": "Model URI", "type": "String"}, {"default":
+          "100", "description": "The traffic split percentage between the candidate
+          model and the last ready model", "name": "Canary Traffic Percent", "type":
+          "String"}, {"default": "", "description": "Kubernetes namespace where the
+          KFServing service is deployed.", "name": "Namespace", "type": "String"},
+          {"default": "", "description": "Machine Learning Framework for Model Serving.",
+          "name": "Framework", "type": "String"}, {"default": "{}", "description":
+          "Custom model runtime container spec in JSON", "name": "Custom Model Spec",
+          "type": "String"}, {"default": "0", "description": "Autoscaling Target Number",
+          "name": "Autoscaling Target", "type": "String"}, {"default": "", "description":
+          "ServiceAccount to use to run the InferenceService pod", "name": "Service
+          Account", "type": "String"}, {"default": "True", "description": "Whether
+          to enable istio sidecar injection", "name": "Enable Istio Sidecar", "type":
+          "Bool"}, {"default": "{}", "description": "Raw InferenceService serialized
+          YAML for deployment", "name": "InferenceService YAML", "type": "String"},
+          {"default": "300", "description": "Timeout seconds for watching until InferenceService
+          becomes ready.", "name": "Watch Timeout", "type": "String"}, {"default":
+          "-1", "description": "Minimum number of InferenceService replicas", "name":
+          "Min Replicas", "type": "String"}, {"default": "-1", "description": "Maximum
+          number of InferenceService replicas", "name": "Max Replicas", "type": "String"},
+          {"default": "60", "description": "Specifies the number of seconds to wait
+          before timing out a request to the component.", "name": "Request Timeout",
+          "type": "String"}], "name": "Kubeflow - Serve Model using KFServing", "outputs":
+          [{"description": "Status JSON output of InferenceService", "name": "InferenceService
+          Status", "type": "String"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
+          "84f27d18805744db98e4d08804ea3c0e6ca5daa1a3a90dd057b5323f19d9dd2c", "url":
+          "https://raw.githubusercontent.com/kubeflow/pipelines/master/components/kubeflow/kfserving/component.yaml"}',
+        pipelines.kubeflow.org/arguments.parameters: '{"Action": "apply", "Autoscaling
+          Target": "0", "Canary Traffic Percent": "100", "Custom Model Spec": "{\"image\":
+          \"thanhhau097/ocrdeployment:v1.0\", \"port\": 5000, \"name\": \"custom-container\",
+          \"command\": [\"python3\", \"/src/main.py\", \"--model_s3_path\", \"s3://ocrpipeline/best_model.pth\"],
+          \"image_pull_policy\": \"Always\"}", "Enable Istio Sidecar": "True", "Framework":
+          "", "InferenceService YAML": "{}", "Max Replicas": "-1", "Min Replicas":
+          "-1", "Model Name": "custom-simple", "Model URI": "", "Namespace": "kubeflow-user",
+          "Request Timeout": "60", "Service Account": "", "Watch Timeout": "1800"}'}
+  - name: mlpipeline
+    dag:
+      tasks:
+      - {name: kubeflow-serve-model-using-kfserving, template: kubeflow-serve-model-using-kfserving}
+  arguments:
+    parameters: []
+  serviceAccountName: pipeline-runner

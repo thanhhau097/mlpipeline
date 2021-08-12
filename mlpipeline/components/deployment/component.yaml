@@ -1,0 +1,17 @@
+name: OCR Deployment
+description: Deploy OCR model
+inputs:
+  - {name: model_path, description: 's3 path to model'}
+outputs:
+  - {name: output_path, type: String, description: 'Output Path'}
+
+implementation:
+  container:
+    image: thanhhau097/ocrdeployment:v1.0
+    command: [
+      python, /src/main.py,
+      --model_path, {inputValue: model_path},
+    ]
+
+    fileOutputs:
+      output_path: /output_path.txt # path to s3
