@@ -146,8 +146,8 @@ def deploy_model(model_s3_path: str):
     import torch
 
     import os
-    os.environ["AWS_ACCESS_KEY_ID"] = "AKIAR3JE4MXNRIY3B4EI"
-    os.environ["AWS_SECRET_ACCESS_KEY"] = "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"
+    os.environ["AWS_ACCESS_KEY_ID"] = "*********************"
+    os.environ["AWS_SECRET_ACCESS_KEY"] = "*********************"
 
     s3 = boto3.client('s3')
     bucket_name = model_s3_path.split('s3://')[1].split('/')[0]

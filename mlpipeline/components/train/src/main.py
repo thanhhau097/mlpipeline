@@ -29,8 +29,8 @@ def train_model(data_path):
         return True
 
 
-    os.environ["AWS_ACCESS_KEY_ID"] = "AKIAR3JE4MXNRIY3B4EI"
-    os.environ["AWS_SECRET_ACCESS_KEY"] = "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"
+    os.environ["AWS_ACCESS_KEY_ID"] = "*********************"
+    os.environ["AWS_SECRET_ACCESS_KEY"] = "*********************"
 
     CHARACTERS = "aáàạảãăắằẳẵặâấầẩẫậbcdđeéèẹẻẽêếềệểễfghiíìịỉĩjklmnoóòọỏõôốồộổỗơớờợởỡpqrstuúùụủũưứừựửữvxyýỳỷỹỵzwAÁÀẠẢÃĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÉÈẸẺẼÊẾỀỆỂỄFGHIÍÌỊỈĨJKLMNOÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠPQRSTUÚÙỤỦŨƯỨỪỰỬỮVXYÝỲỴỶỸZW0123456789 .,-/()'#+:"
     PAD_token = 0  # Used for padding short sentences
