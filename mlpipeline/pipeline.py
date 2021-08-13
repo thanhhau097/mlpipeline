@@ -18,17 +18,16 @@ def create_train_component():
     return component
 
 def mlpipeline():
-    # preprocess_component = create_preprocess_component()
-    # preprocess_task = preprocess_component()
+    preprocess_component = create_preprocess_component()
+    preprocess_task = preprocess_component()
 
-    # train_component = create_train_component()
-    # train_task = train_component(data_path=preprocess_task.outputs['output_path'])
+    train_component = create_train_component()
+    train_task = train_component(data_path=preprocess_task.outputs['output_path'])
 
-    kfserving_op = components.load_component_from_url('https://raw.githubusercontent.com/kubeflow/pipelines/master/components/kubeflow/kfserving/component.yaml')
-    # container_spec = {"image": "thanhhau097/ocrdeployment", "port":5000, "name": "custom-container", "command": "python3 /src/main.py --model_s3_path {}".format(train_task.outputs['output_path'])}
-    container_spec = {"image": "thanhhau097/ocrdeployment:v1.0", "port":5000, "name": "custom-container", "command": ["python3", "/src/main.py", "--model_s3_path", "s3://ocrpipeline/best_model.pth"]}.set_image_pull_policy('Always')
+    deployment_op = components.load_component_from_url('https://raw.githubusercontent.com/kubeflow/pipelines/master/components/kubeflow/kfserving/component.yaml')
+    container_spec = {"image": "thanhhau097/ocrdeployment", "port":5000, "name": "custom-container", "command": "python3 /src/main.py --model_s3_path {}".format(train_task.outputs['output_path'])}
     container_spec = json.dumps(container_spec)
-    kfserving_op(
+    deployment_op(
         action='apply',
         model_name='custom-simple',
         custom_model_spec=container_spec, 

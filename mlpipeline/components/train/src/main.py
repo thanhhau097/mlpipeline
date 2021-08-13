@@ -69,6 +69,13 @@ def train_model(data_path):
 
     import cv2
     from torch.utils.data import Dataset
+    
+    # Create an experiment with your api key
+    experiment = Experiment(
+        api_key="***********************",
+        project_name="ocr",
+        workspace="<username>",
+    )
 
 
     class OCRDataset(Dataset):
@@ -459,17 +466,42 @@ def train_model(data_path):
     BATCH_SIZE = 32
     NUM_WORKERS = 4
 
+    # merge data from train folder and user_data folder 
+    import shutil
+    import json
+
+    ## merge labels
+    with open('./data/user_data/labels.json', 'r') as f:
+        user_data = json.load(f)
+
+    with open('./data/train/labels.json', 'r') as f:
+        train_data = json.load(f)
+
+    train_data = {**train_data, **user_data}
+    with open('./data/train/labels.json', 'w') as f:
+        json.dump(train_data, f)
+
+    ## merge images
+    SOURCE_FOLDER = './data/user_data/images'
+    TARGET_FOLDER = './data/train/images'
+
+    for image_name in os.listdir(SOURCE_FOLDER):
+        shutil.copy2(os.path.join(SOURCE_FOLDER, image_name), TARGET_FOLDER)
+
+
+    # CREATE DATASET AND DATALOADER
     train_dataset = OCRDataset(data_dir='./data/train/images/', label_path='./data/train/labels.json')
     val_dataset = OCRDataset(data_dir='./data/validation/images/', label_path='./data/validation/labels.json')
 
     train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS, collate_fn=collate_wrapper)
     val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS, collate_fn=collate_wrapper)
 
+    # CREATE MODEL
     model = CTCModel(inner_dim=128, num_chars=len(CHAR2INDEX))
 
     import torch
     import numpy as np
-
+    
     N_EPOCHS = 50
     optimizer = torch.optim.Adam(model.parameters())
     loss_fn = ctc_loss
@@ -480,8 +512,10 @@ def train_model(data_path):
     print('START TRAINING')
     train()
 
+    # save model to s3
     upload_file_to_s3('best_model.pth', bucket='ocrpipeline', object_name='best_model.pth')
 
+    # Write to output file
     model_path = "s3://ocrpipeline/best_model.pth"
     Path('/output_path.txt').write_text(model_path)
 

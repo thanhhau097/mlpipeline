@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: mlpipeline-
-  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.7.0, pipelines.kubeflow.org/pipeline_compilation_time: '2021-08-10T17:28:44.145301',
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.7.0, pipelines.kubeflow.org/pipeline_compilation_time: '2021-08-13T17:29:40.859670',
     pipelines.kubeflow.org/pipeline_spec: '{"name": "Mlpipeline"}'}
   labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.7.0}
 spec:
@@ -26,9 +26,8 @@ spec:
       - --framework
       - ''
       - --custom-model-spec
-      - '{"image": "thanhhau097/ocrdeployment:v1.0", "port": 5000, "name": "custom-container",
-        "command": ["python3", "/src/main.py", "--model_s3_path", "s3://ocrpipeline/best_model.pth"],
-        "image_pull_policy": "Always"}'
+      - '{"image": "thanhhau097/ocrdeployment", "port": 5000, "name": "custom-container",
+        "command": "python3 /src/main.py --model_s3_path {{inputs.parameters.ocr-train-output_path}}"}'
       - --autoscaling-target
       - '0'
       - --service-account
@@ -49,6 +48,9 @@ spec:
       - '60'
       command: [python]
       image: quay.io/aipipeline/kfserving-component:v0.5.1
+    inputs:
+      parameters:
+      - {name: ocr-train-output_path}
     outputs:
       artifacts:
       - {name: kubeflow-serve-model-using-kfserving-InferenceService-Status, path: /tmp/outputs/InferenceService_Status/data}
@@ -104,16 +106,79 @@ spec:
           "https://raw.githubusercontent.com/kubeflow/pipelines/master/components/kubeflow/kfserving/component.yaml"}',
         pipelines.kubeflow.org/arguments.parameters: '{"Action": "apply", "Autoscaling
           Target": "0", "Canary Traffic Percent": "100", "Custom Model Spec": "{\"image\":
-          \"thanhhau097/ocrdeployment:v1.0\", \"port\": 5000, \"name\": \"custom-container\",
-          \"command\": [\"python3\", \"/src/main.py\", \"--model_s3_path\", \"s3://ocrpipeline/best_model.pth\"],
-          \"image_pull_policy\": \"Always\"}", "Enable Istio Sidecar": "True", "Framework":
-          "", "InferenceService YAML": "{}", "Max Replicas": "-1", "Min Replicas":
-          "-1", "Model Name": "custom-simple", "Model URI": "", "Namespace": "kubeflow-user",
-          "Request Timeout": "60", "Service Account": "", "Watch Timeout": "1800"}'}
+          \"thanhhau097/ocrdeployment\", \"port\": 5000, \"name\": \"custom-container\",
+          \"command\": \"python3 /src/main.py --model_s3_path {{inputs.parameters.ocr-train-output_path}}\"}",
+          "Enable Istio Sidecar": "True", "Framework": "", "InferenceService YAML":
+          "{}", "Max Replicas": "-1", "Min Replicas": "-1", "Model Name": "custom-simple",
+          "Model URI": "", "Namespace": "kubeflow-user", "Request Timeout": "60",
+          "Service Account": "", "Watch Timeout": "1800"}'}
   - name: mlpipeline
     dag:
       tasks:
-      - {name: kubeflow-serve-model-using-kfserving, template: kubeflow-serve-model-using-kfserving}
+      - name: kubeflow-serve-model-using-kfserving
+        template: kubeflow-serve-model-using-kfserving
+        dependencies: [ocr-train]
+        arguments:
+          parameters:
+          - {name: ocr-train-output_path, value: '{{tasks.ocr-train.outputs.parameters.ocr-train-output_path}}'}
+      - {name: ocr-preprocessing, template: ocr-preprocessing}
+      - name: ocr-train
+        template: ocr-train
+        dependencies: [ocr-preprocessing]
+        arguments:
+          parameters:
+          - {name: ocr-preprocessing-output_path, value: '{{tasks.ocr-preprocessing.outputs.parameters.ocr-preprocessing-output_path}}'}
+  - name: ocr-preprocessing
+    container:
+      args: []
+      command: [python, /src/main.py]
+      image: thanhhau097/ocrpreprocess
+    outputs:
+      parameters:
+      - name: ocr-preprocessing-output_path
+        valueFrom: {path: /output_path.txt}
+      artifacts:
+      - {name: ocr-preprocessing-output_path, path: /output_path.txt}
+    metadata:
+      labels:
+        pipelines.kubeflow.org/kfp_sdk_version: 1.7.0
+        pipelines.kubeflow.org/pipeline-sdk-type: kfp
+        pipelines.kubeflow.org/enable_caching: "true"
+      annotations: {pipelines.kubeflow.org/component_spec: '{"description": "Preprocess
+          OCR model", "implementation": {"container": {"command": ["python", "/src/main.py"],
+          "fileOutputs": {"output_path": "/output_path.txt"}, "image": "thanhhau097/ocrpreprocess"}},
+          "name": "OCR Preprocessing", "outputs": [{"description": "Output Path",
+          "name": "output_path", "type": "String"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
+          "d5922a4c63432cb79f05fc02cd1b6c0f0c881e0e3883573d5cadef1eb379087c", "url":
+          "./components/preprocess/component.yaml"}'}
+  - name: ocr-train
+    container:
+      args: []
+      command: [python, /src/main.py, --data_path, '{{inputs.parameters.ocr-preprocessing-output_path}}']
+      image: thanhhau097/ocrtrain
+    inputs:
+      parameters:
+      - {name: ocr-preprocessing-output_path}
+    outputs:
+      parameters:
+      - name: ocr-train-output_path
+        valueFrom: {path: /output_path.txt}
+      artifacts:
+      - {name: ocr-train-output_path, path: /output_path.txt}
+    metadata:
+      labels:
+        pipelines.kubeflow.org/kfp_sdk_version: 1.7.0
+        pipelines.kubeflow.org/pipeline-sdk-type: kfp
+        pipelines.kubeflow.org/enable_caching: "true"
+      annotations: {pipelines.kubeflow.org/component_spec: '{"description": "Training
+          OCR model", "implementation": {"container": {"command": ["python", "/src/main.py",
+          "--data_path", {"inputValue": "data_path"}], "fileOutputs": {"output_path":
+          "/output_path.txt"}, "image": "thanhhau097/ocrtrain"}}, "inputs": [{"description":
+          "s3 path to data", "name": "data_path"}], "name": "OCR Train", "outputs":
+          [{"description": "Output Path", "name": "output_path", "type": "String"}]}',
+        pipelines.kubeflow.org/component_ref: '{"digest": "382c44ee886fc59d95f01989ba7765df9ec2321b7c706a90a6f9c76f70cf2ab0",
+          "url": "./components/train/component.yaml"}', pipelines.kubeflow.org/arguments.parameters: '{"data_path":
+          "{{inputs.parameters.ocr-preprocessing-output_path}}"}'}
   arguments:
     parameters: []
   serviceAccountName: pipeline-runner

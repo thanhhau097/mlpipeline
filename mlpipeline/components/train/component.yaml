@@ -14,4 +14,4 @@ implementation:
     ]
 
     fileOutputs:
-      output_path: /output_path.txt # path to s3
+      output_path: /output_path.txt
