@@ -11,16 +11,15 @@ Trong blog này, chúng ta sẽ cùng nhau xây dựng một phần mềm ứng 
 4. [Huấn luyện mô hình học máy](./training/index.md)
 5. [Triển khai và áp dụng mô hình học máy](./deployment/index.md)
 6. [Xây dựng hệ thống huấn luyện mô hình bằng Kubeflow](./kubeflow/index.md)
-7. [Triển khai mô hình bằng Nuclio](./nuclio/index.md)
+7. [Kết nối các thành phần của hệ thống học máy](./pipeline/index.md)
 8. [Xây dựng cơ sở hạ tầng cho mô hình học máy bằng Terraform](./terraform/index.md)
-9. [Kết nối các thành phần của hệ thống học máy](./pipeline/index.md)
 
 ### 3. Công cụ
 Trong blog này, chúng ta sẽ sử dụng các công nghệ và các công cụ được áp dụng trong các dự án học máy thực tế, vì vậy người đọc cần có kiến thức cơ bản về phát triển phần mềm và các công cụ phát triển phần mềm.
 
 Trong blog, chúng ta sẽ sử dụng các công cụ và thư viện sau:
 1. Cơ bản: Python, Git, Pytorch, AWS, DVC, Docker, Kubernetes
-2. Các thư viện mã nguồn mở có sẵn: Label Studio, Cometml, Kubeflow, Nuclio.
+2. Các thư viện mã nguồn mở có sẵn: Label Studio, Cometml, Kubeflow, KFServing.
 
 Trong blog này, chúng ta sẽ cùng nhau sử dụng các công cụ được liệt kê ở trên để xây dựng một hệ thống machine learning hoàn chỉnh.
 

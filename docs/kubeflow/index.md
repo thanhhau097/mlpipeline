@@ -1536,10 +1536,15 @@ curl -i -v -H "Host: http://custom-simple.kubeflow-user.example.com" -X POST "ht
 
 trong đó `Downloads/plane.jpg` là đường dẫn đến ảnh mà chúng ta cần thử nghiệm với mô hình học máy.
 
+Để quan sát thống kê về lượng CPU, bộ nhớ sử dụng và các thông số liên quan đến việc triển khai mô hình, chúng ta có thể sử dụng ứng dụng Grafana bằng câu lệnh sau: 
+```
+kubectl port-forward --namespace knative-monitoring $(kubectl get pod --namespace knative-monitoring --selector="app=grafana" --output jsonpath='{.items[0].metadata.name}') 8081:3000
+```
+
+Sau đó truy cập vào đường dẫn http://localhost:8081 để quan sát và phân tích.
+
 ## Tổng kết
 Như vậy trong bài này, chúng ta đã cùng nhau xây dựng một hệ thống huấn luyện mô hình học máy bằng cách sử dụng Kubeflow. Hệ thống này có thể cập nhật dữ liệu liên tục từ Label Studio và huấn luyện mô hình trên dữ liệu đó. Ngoài ra chúng ta cũng có thể cài đặt để chạy experiment tự động bằng cách chọn chế độ `recurrent` khi chạy pipeline.
-
-Trong phần tiếp theo, chúng ta sẽ cải thiện phần triển khai mô hình bằng cách sử dụng Nuclio, giúp cải thiện hiệu năng của API nhằm đáp ứng nhu cầu trong thực tế.
 
 Bài trước: [Triển khai mô hình học máy](../deployment/index.md)
 
