@@ -30,3 +30,11 @@ Nếu có bất kì ý kiến đóng góp và sửa đổi nào, bạn vui lòng
 **Tác giả:** Nguyễn Thành Hậu
 
 **Email:** thanhhau097@gmail.com
+
+<script src="https://utteranc.es/client.js"
+        repo="[ENTER REPO HERE]"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
