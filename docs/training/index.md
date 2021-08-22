@@ -952,7 +952,13 @@ Sau khi lưu trọng số của mô hình bằng `dvc`, chúng ta sẽ có một
 ## Tổng kết
 Trong phần này, chúng ta đã cùng nhau xây dựng, tối ưu mô hình và lưu trữ mô hình sử dụng các công cụ Pytorch, Cometml và DVC. Trong phần tiếp theo, chúng ta cùng nhau triển khai và ứng dụng mô hình sử dụng kết quả mà chúng ta có được ở phần này.
 
-Bài tiếp theo: [Triển khai và áp dụng mô hình học máy](../deployment/index.md)
+
 ## Tài liệu tham khảo
 1. [An Intuitive Explanation of Connectionist Temporal Classification](https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c)
 2. [How to build end-to-end recognition system](https://www.youtube.com/watch?v=uVbOckyUemo)
+
+Bài trước: [Lưu trữ và gán nhãn dữ liệu](./data/index.md)
+
+Bài tiếp theo: [Triển khai và áp dụng mô hình học máy](../deployment/index.md)
+
+[Về Trang chủ](../index.md)

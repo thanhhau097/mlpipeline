@@ -52,3 +52,7 @@ Sau khi huấn luyện mô hình, chúng ta cần triển khai mô hình này v�
 ## Tài liệu tham khảo
 1. [Machine Learning Systems Design - Chip Huyen](https://github.com/chiphuyen/machine-learning-systems-design)
 2. [Full Stack Deep Learning](https://fullstackdeeplearning.com/)
+
+Bài tiếp theo: [Phân tích yêu cầu bài toán](./problem/index.md)
+
+[Về Trang chủ](../index.md)
