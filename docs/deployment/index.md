@@ -153,3 +153,12 @@ Bài trước: [Huấn luyện mô hình học máy](../training/index.md)
 Bài tiếp theo: [Xây dựng hệ thống huấn luyện mô hình bằng Kubeflow](./kubeflow/index.md)
 
 [Về Trang chủ](../index.md)
+
+<script src="https://utteranc.es/client.js"
+        repo="thanhhau097/mlpipeline"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

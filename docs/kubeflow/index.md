@@ -1551,3 +1551,13 @@ Bài trước: [Triển khai mô hình học máy](../deployment/index.md)
 Bài tiếp theo: [Kết nối các thành phần của hệ thống học máy](./pipeline/index.md)
 
 [Về Trang chủ](../index.md)
+
+
+<script src="https://utteranc.es/client.js"
+        repo="thanhhau097/mlpipeline"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

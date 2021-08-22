@@ -26,3 +26,13 @@ Bài trước: [Tổng quan về một hệ thống học máy (Machine Learning
 Bài tiếp theo: [Lưu trữ và gán nhãn dữ liệu](./data/index.md)
 
 [Về Trang chủ](../index.md)
+
+
+<script src="https://utteranc.es/client.js"
+        repo="thanhhau097/mlpipeline"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

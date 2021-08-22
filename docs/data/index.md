@@ -275,3 +275,11 @@ Trong phần này, chúng ta đã cùng nhau phân tích dữ liệu của dự 
 
 [Bài tiếp theo: Huấn luyện mô hình học máy](../training/index.md)
 
+<script src="https://utteranc.es/client.js"
+        repo="thanhhau097/mlpipeline"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

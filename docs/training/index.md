@@ -962,3 +962,13 @@ Bài trước: [Lưu trữ và gán nhãn dữ liệu](./data/index.md)
 Bài tiếp theo: [Triển khai và áp dụng mô hình học máy](../deployment/index.md)
 
 [Về Trang chủ](../index.md)
+
+
+<script src="https://utteranc.es/client.js"
+        repo="thanhhau097/mlpipeline"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
