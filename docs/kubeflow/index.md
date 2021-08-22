@@ -1548,7 +1548,7 @@ Như vậy trong bài này, chúng ta đã cùng nhau xây dựng một hệ th�
 
 Bài trước: [Triển khai mô hình học máy](../deployment/index.md)
 
-Bài tiếp theo: [Kết nối các thành phần của hệ thống học máy](./pipeline/index.md)
+Bài tiếp theo: [Kết nối các thành phần của hệ thống học máy](../pipeline/index.md)
 
 [Về Trang chủ](../index.md)
 

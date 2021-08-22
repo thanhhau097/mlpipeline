@@ -21,9 +21,9 @@ Trong blog này, chúng ta sẽ xây dựng một hệ thống học máy cho b�
 
 Đây là thiết kế đơn giản cho hệ thống mà chúng ta cần xây dựng. Hệ thống nhận dữ liệu, xử lý và trả về API để người dùng có thể sử dụng. Chúng ta sẽ lưu trữ dữ liệu người dùng vào cơ sở dữ liệu nhằm mục đích cải thiện mô hình trong tương lai.
 
-Bài trước: [Tổng quan về một hệ thống học máy (Machine Learning System)](./overview/index.md)
+Bài trước: [Tổng quan về một hệ thống học máy (Machine Learning System)](../overview/index.md)
 
-Bài tiếp theo: [Lưu trữ và gán nhãn dữ liệu](./data/index.md)
+Bài tiếp theo: [Lưu trữ và gán nhãn dữ liệu](../data/index.md)
 
 [Về Trang chủ](../index.md)
 

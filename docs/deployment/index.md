@@ -150,7 +150,7 @@ Trong bài này, chúng ta đã cùng nhau xây dựng một ứng dụng web v�
 
 Bài trước: [Huấn luyện mô hình học máy](../training/index.md)
 
-Bài tiếp theo: [Xây dựng hệ thống huấn luyện mô hình bằng Kubeflow](./kubeflow/index.md)
+Bài tiếp theo: [Xây dựng hệ thống huấn luyện mô hình bằng Kubeflow](../kubeflow/index.md)
 
 [Về Trang chủ](../index.md)
 

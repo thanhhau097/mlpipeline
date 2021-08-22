@@ -273,7 +273,9 @@ Chọn submit để hoàn thành việc gán nhãn và chuyển qua bước ti�
 ## Tổng kết
 Trong phần này, chúng ta đã cùng nhau phân tích dữ liệu của dự án, tải dữ liệu lên đám mây (AWS S3) và thực hiện việc gán nhãn trên dữ liệu này. Trong phần tiếp theo chúng ta sẽ thực hiện việc huấn luyện mô hình học máy trên dữ liệu được gán nhãn và thực hiện tối ưu mô hình.
 
-[Bài tiếp theo: Huấn luyện mô hình học máy](../training/index.md)
+Bài trước: [Phân tích yêu cầu bài toán](./problem/index.md)
+
+Bài tiếp theo: [Huấn luyện mô hình học máy](../training/index.md)
 
 <script src="https://utteranc.es/client.js"
         repo="thanhhau097/mlpipeline"
