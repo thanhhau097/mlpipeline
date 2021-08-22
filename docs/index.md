@@ -32,8 +32,9 @@ Nếu có bất kì ý kiến đóng góp và sửa đổi nào, bạn vui lòng
 **Email:** thanhhau097@gmail.com
 
 <script src="https://utteranc.es/client.js"
-        repo="[ENTER REPO HERE]"
+        repo="thanhhau097/mlpipeline"
         issue-term="pathname"
+        label="Comment"
         theme="github-light"
         crossorigin="anonymous"
         async>
